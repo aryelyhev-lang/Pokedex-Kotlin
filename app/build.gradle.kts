@@ -60,5 +60,6 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     // Conversor Gson para o Retrofit: transforma JSON em objetos Kotlin (e vice-versa)
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-
+    implementation("io.coil-kt:coil-compose:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 }

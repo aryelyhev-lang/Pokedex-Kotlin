@@ -3,6 +3,7 @@ package com.example.listadeexercicios06.screen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.listadeexercicios06.model.Pokemon
+import com.example.listadeexercicios06.model.PokemonDetalhes
 import com.example.listadeexercicios06.repository.PokemonRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -82,4 +83,24 @@ class PokemonViewModel : ViewModel() {
         _pokemonEncontrado.value = null
         _mensagemErro.value = ""
     }
+
+
+    private val _pokemonDetalhes = MutableStateFlow<PokemonDetalhes?>(null)
+    val pokemonDetalhes: StateFlow<PokemonDetalhes?> = _pokemonDetalhes
+
+    fun buscarDetalhes(id: Int) {
+        viewModelScope.launch {
+            _carregando.value = true
+            _mensagemErro.value = ""
+
+            try {
+                _pokemonDetalhes.value = repository.buscarDetalhes(id)
+            } catch (e: Exception) {
+                _mensagemErro.value = "Não foi possível carregar os detalhes."
+            } finally {
+                _carregando.value = false
+            }
+        }
+    }
+
 }

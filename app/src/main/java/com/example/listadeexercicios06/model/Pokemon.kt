@@ -1,4 +1,3 @@
-
 package com.example.listadeexercicios06.model
 
 // Representa um Pokémon retornado pela PokéAPI.

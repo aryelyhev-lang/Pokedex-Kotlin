@@ -5,6 +5,7 @@ import com.example.listadeexercicios06.model.Pokemon
 import com.example.listadeexercicios06.service.RetrofitFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import com.example.listadeexercicios06.model.PokemonDetalhes
 
 class PokemonRepository {
 
@@ -35,6 +36,12 @@ class PokemonRepository {
                     name = resultado.name
                 )
             }
+        }
+    }
+
+    suspend fun buscarDetalhes(id: Int): PokemonDetalhes {
+        return withContext(Dispatchers.IO) {
+            service.getPokemonDetalhes(id.toString())
         }
     }
 }

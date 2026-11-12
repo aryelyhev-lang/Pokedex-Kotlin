@@ -29,8 +29,8 @@ import com.example.listadeexercicios06.model.Pokemon
 
 @Composable
 fun PokedexScreen(
-//    viewModel: PokemonViewModel = viewModel()
-    pokemonViewModel: PokemonViewModel
+    pokemonViewModel: PokemonViewModel,
+    onPokemonClick: (Int) -> Unit
 ) {
     var pesquisa by remember { mutableStateOf("") }
 
@@ -207,7 +207,7 @@ fun PokedexScreen(
 
 // CARD INDIVIDUAL DO POKÉMON
 @Composable
-private fun PokemonCardItem(pokemon: Pokemon) {
+private fun PokemonCardItem(pokemon: Pokemon ) {
 
     Card(
         modifier = Modifier
