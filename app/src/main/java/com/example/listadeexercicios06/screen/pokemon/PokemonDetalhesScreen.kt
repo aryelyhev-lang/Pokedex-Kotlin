@@ -1,4 +1,4 @@
-package com.example.listadeexercicios06.screen
+package com.example.listadeexercicios06.screen.pokemon
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*

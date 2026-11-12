@@ -8,7 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
 import com.example.listadeexercicios06.screen.pokedex.PokedexScreen
-import com.example.listadeexercicios06.screen.PokemonDetalhesScreen
+import com.example.listadeexercicios06.screen.pokemon.PokemonDetalhesScreen
 import com.example.listadeexercicios06.screen.pokedex.PokedexViewModel
 
 class MainActivity : ComponentActivity() {
