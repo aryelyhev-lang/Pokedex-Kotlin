@@ -1,25 +1,20 @@
+
 package com.example.listadeexercicios06.service
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-// Arquivo responsavel por: Configurar a conexão com a Api utilizando Retrofit
+// Configura a conexão com a PokéAPI.
 class RetrofitFactory {
 
-    //  Endereço da API de pokemons
-    private val BASE_URL = "https://pokeapi.co/api/v2/pokemon/ditto"
+    private val BASE_URL = "https://pokeapi.co/api/v2/pokemon/"
 
-
-
-    // Cria o cliente HTTP padrão
-    private val retrofitFactory = Retrofit
-        .Builder()
-        .baseUrl(BASE_URL)                                      // URL base de todas as chamadas
-        .addConverterFactory(GsonConverterFactory.create())    // usa o Gson para converter o JSON
+    private val retrofit = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    // Devolve o cliente já configurado com as funções da interface EnderecoService
     fun getPokemonService(): PokemonService {
-        return retrofitFactory.create(PokemonService::class.java)
+        return retrofit.create(PokemonService::class.java)
     }
 }

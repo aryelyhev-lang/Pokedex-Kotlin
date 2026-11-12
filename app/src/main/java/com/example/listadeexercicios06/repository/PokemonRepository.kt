@@ -1,7 +1,40 @@
+
 package com.example.listadeexercicios06.repository
 
-// Arquivo responsavel por: Intermediar a comunicação entre o ViewModel e a fonte de dados
+import com.example.listadeexercicios06.model.Pokemon
+import com.example.listadeexercicios06.service.RetrofitFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
-/*  Por exemplo, quando o usuário abrir a Pokédex
-    o Repository será responsável por solicitar os dados
-    dos Pokémon ao Service e disponibilizá-los ao ViewModel   */
+class PokemonRepository {
+
+    private val service = RetrofitFactory().getPokemonService()
+
+    // Busca um Pokémon pelo nome ou ID.
+    suspend fun buscarPokemon(pesquisa: String): Pokemon {
+        return withContext(Dispatchers.IO) {
+            service.getPokemonByIdOrName(pesquisa)
+        }
+    }
+
+    // Busca a lista inicial de Pokémon.
+    suspend fun buscarListaPokemons(): List<Pokemon> {
+        return withContext(Dispatchers.IO) {
+
+            val resposta = service.getAllPokemon()
+
+            resposta.results.map { resultado ->
+
+                val id = resultado.url
+                    .trimEnd('/')
+                    .substringAfterLast('/')
+                    .toInt()
+
+                Pokemon(
+                    id = id,
+                    name = resultado.name
+                )
+            }
+        }
+    }
+}
