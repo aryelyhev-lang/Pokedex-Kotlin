@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.listadeexercicios06.model.PokemonDetalhes
+import com.example.listadeexercicios06.screen.pokedex.PokedexViewModel
 
 // Define uma cor para cada tipo de Pokémon
 private enum class TipoPokemon(val cor: Color) {
@@ -51,15 +52,15 @@ private enum class TipoPokemon(val cor: Color) {
 @Composable
 fun PokemonDetalhesScreen(
     pokemonId: Int,
-    pokemonViewModel: PokemonViewModel,
+    pokedexViewModel: PokedexViewModel,
     onVoltar: () -> Unit
 ) {
-    val pokemon by pokemonViewModel.pokemonDetalhes.collectAsState()
-    val carregando by pokemonViewModel.carregando.collectAsState()
-    val erro by pokemonViewModel.mensagemErro.collectAsState()
+    val pokemon by pokedexViewModel.pokemonDetalhes.collectAsState()
+    val carregando by pokedexViewModel.carregando.collectAsState()
+    val erro by pokedexViewModel.mensagemErro.collectAsState()
 
     LaunchedEffect(pokemonId) {
-        pokemonViewModel.buscarDetalhes(pokemonId)
+        pokedexViewModel.buscarDetalhes(pokemonId)
     }
 
     val cor = TipoPokemon.buscarCor(

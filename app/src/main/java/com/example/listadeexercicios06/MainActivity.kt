@@ -6,10 +6,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.*
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.listadeexercicios06.screen.PokedexScreen
+import androidx.lifecycle.ViewModel
+import com.example.listadeexercicios06.screen.pokedex.PokedexScreen
 import com.example.listadeexercicios06.screen.PokemonDetalhesScreen
-import com.example.listadeexercicios06.screen.PokemonViewModel
+import com.example.listadeexercicios06.screen.pokedex.PokedexViewModel
 
 class MainActivity : ComponentActivity() {
 
@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            val pokemonViewModel: PokemonViewModel = viewModel()
+            val pokedexViewModel: PokedexViewModel = ViewModel()
 
             var pokemonSelecionado by remember {
                 mutableStateOf<Int?>(null)
@@ -27,7 +27,7 @@ class MainActivity : ComponentActivity() {
 
             if (pokemonSelecionado == null) {
                 PokedexScreen(
-                    pokemonViewModel = pokemonViewModel,
+                    pokedexViewModel = pokedexViewModel,
                     onPokemonClick = { id ->
                         pokemonSelecionado = id
                     }
@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
             } else {
                 PokemonDetalhesScreen(
                     pokemonId = pokemonSelecionado!!,
-                    pokemonViewModel = pokemonViewModel,
+                    pokedexViewModel = pokedexViewModel,
                     onVoltar = {
                         pokemonSelecionado = null
                     }

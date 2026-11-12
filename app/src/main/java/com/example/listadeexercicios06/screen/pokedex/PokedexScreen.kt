@@ -1,4 +1,4 @@
-package com.example.listadeexercicios06.screen
+package com.example.listadeexercicios06.screen.pokedex
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -29,15 +29,15 @@ import com.example.listadeexercicios06.model.Pokemon
 
 @Composable
 fun PokedexScreen(
-    pokemonViewModel: PokemonViewModel,
+    pokedexViewModel: PokedexViewModel,
     onPokemonClick: (Int) -> Unit
 ) {
     var pesquisa by remember { mutableStateOf("") }
 
-    val listaPokemons by pokemonViewModel.listaPokemons.collectAsState()
-    val pokemonEncontrado by pokemonViewModel.pokemonEncontrado.collectAsState()
-    val carregando by pokemonViewModel.carregando.collectAsState()
-    val mensagemErro by pokemonViewModel.mensagemErro.collectAsState()
+    val listaPokemons by pokedexViewModel.listaPokemons.collectAsState()
+    val pokemonEncontrado by pokedexViewModel.pokemonEncontrado.collectAsState()
+    val carregando by pokedexViewModel.carregando.collectAsState()
+    val mensagemErro by pokedexViewModel.mensagemErro.collectAsState()
 
     val teclado = LocalSoftwareKeyboardController.current
 
@@ -114,7 +114,7 @@ fun PokedexScreen(
                     ),
                     keyboardActions = KeyboardActions(
                         onSearch = {
-                            pokemonViewModel.buscarPokemon(pesquisa)
+                            pokedexViewModel.buscarPokemon(pesquisa)
                             teclado?.hide()
                         }
                     ),
@@ -124,7 +124,7 @@ fun PokedexScreen(
 
             IconButton(
                 onClick = {
-                    pokemonViewModel.buscarPokemon(pesquisa)
+                    pokedexViewModel.buscarPokemon(pesquisa)
                     teclado?.hide()
                 }
             ) {
@@ -172,7 +172,7 @@ fun PokedexScreen(
                         .clickable {
                             pesquisa = ""
                             // Limpa o resultado e permite visualizar a lista novamente.
-                            pokemonViewModel.limparPesquisa()
+                            pokedexViewModel.limparPesquisa()
                         },
                     color = Color(183, 129, 227),
                     fontWeight = FontWeight.Bold

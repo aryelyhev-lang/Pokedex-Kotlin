@@ -1,4 +1,4 @@
-package com.example.listadeexercicios06.screen
+package com.example.listadeexercicios06.screen.pokedex
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
     - Tratar erros da API
     - Buscar Pokémon pelo nome ou ID
 */
-class PokemonViewModel : ViewModel() {
+class PokedexViewModel : ViewModel() {
 
     private val repository = PokemonRepository()
 
